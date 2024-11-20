@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Image Details</title>
+    <style>
+        /* Scoped Styles for the Image Details Page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #555;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .actions a {
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 20px;
+            color: white;
+            background-color: #007BFF;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .actions a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Details</h1>
+        <ul>
+            <li><strong>Height:</strong> {{ details.height }}</li>
+            <li><strong>Width:</strong> {{ details.width }}</li>
+            <li><strong>Channels:</strong> {{ details.channels }}</li>
+        </ul>
+        <img src="/static/images/{{ image_path }}" alt="Uploaded Image">
+        <div class="actions">
+            <a href="/histogram/{{ image_path }}">View Histogram</a>
+            <a href="/contrast/{{ image_path }}">Apply Contrast Stretching</a>
+            <a href="/">Back </a>
+        </div>
+    </div>
+</body>
+</html>

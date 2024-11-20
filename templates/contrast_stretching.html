@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contrast Stretching</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Contrast Stretching Results</h1>
+        <div class="comparison">
+            <!-- Original Image Section -->
+            <div class="section">
+                <h2>Original Grayscale Image</h2>
+                <img src="/static/images/{{ gray_image }}" alt="Grayscale Image">
+                <h3>Original Histogram</h3>
+                <img src="/static/images/{{ gray_histogram }}" alt="Original Histogram">
+                <h3>Pixel Intensity Frequencies</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Intensity</th>
+                            <th>Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in range(256) %}
+                        <tr>
+                            <td>{{ i }}</td>
+                            <td>{{ original_frequencies[i] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Stretched Image Section -->
+            <div class="section">
+                <h2>Contrast Stretched Image</h2>
+                <img src="/static/images/{{ stretched_image }}" alt="Stretched Image">
+                <h3>Stretched Histogram</h3>
+                <img src="/static/images/{{ stretched_histogram }}" alt="Stretched Histogram">
+                <h3>Pixel Intensity Frequencies</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Intensity</th>
+                            <th>Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in range(256) %}
+                        <tr>
+                            <td>{{ i }}</td>
+                            <td>{{ stretched_frequencies[i] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Custom Contrast Stretching Section -->
+            <div class="section custom-stretch">
+                <h2>Custom Contrast Stretching</h2>
+                <form action="/contrast/{{ gray_image }}" method="get">
+                    <label for="custom_min">Custom Min Intensity:</label>
+                    <input type="number" id="custom_min" name="custom_min" min="0" max="255" required>
+                    <label for="custom_max">Custom Max Intensity:</label>
+                    <input type="number" id="custom_max" name="custom_max" min="0" max="255" required>
+                    <button type="submit">Apply Custom Stretch</button>
+                </form>
+                    <button>
+                        <a href ="http://127.0.0.1:5000/details/{{ gray_image }}">
+                        Back
+                        </a>
+                    </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
